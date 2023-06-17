@@ -16,7 +16,7 @@ tr {
   background-color: rgb(159, 159, 159);
   /* border: 1px solid black; */
   padding: 0.25rem;
-  height: 1.25rem;
+  height: 1.675rem;
 }
 table {
   padding: 0.5rem;
@@ -48,6 +48,15 @@ table {
   padding: 0rem;
 }
 
+.testingContainer {
+  background-color: rgb(109, 109, 109);
+  display: grid;
+  place-items: center;
+  position: absolute;
+  color: white;
+  height: 80%;
+  width: 80%;
+}
 .numpad {
   font-size: 0.75rem;
   display: flex;
@@ -80,7 +89,7 @@ table {
 }
 
 .numButton:disabled {
-  background-color: #ddd;
+  background-color: rgb(112, 112, 112);
   cursor: not-allowed;
 }
 
@@ -99,6 +108,8 @@ table {
   border: none;
   padding: 0.25rem;
   border-radius: 12px;
+  font-weight: 600;
+  color: rgb(238, 238, 238);
 }
 .enterButton:disabled {
   background-color: rgb(164, 164, 164);

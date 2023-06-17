@@ -4,8 +4,8 @@ import styles from "../styles/grid.module.css";
 
 const Numpad = ({ input, setInput, handleCheck, guesses }) => {
   const handleButtonClick = (value) => {
-    if (input.length === 5) {
-      return; // Limit reached, do nothing
+    if (input.length === 5 || input.includes(value)) {
+      return; // Limit reached or number already pressed, do nothing
     }
     setInput(input + value);
   };
@@ -13,14 +13,16 @@ const Numpad = ({ input, setInput, handleCheck, guesses }) => {
   const handleClear = () => {
     setInput(input.slice(0, -1));
   };
-
+  const isZeroButtonDisabled = guesses.length >= 10 || input.includes("0");
   const renderButtons = () => {
     const buttons = [];
     for (let i = 1; i <= 9; i++) {
+      const isButtonDisabled =
+        guesses.length >= 10 || input.includes(i.toString());
       buttons.push(
         <button
           className={styles.numButton}
-          disabled={guesses.length >= 6 ? true : false}
+          disabled={isButtonDisabled ? true : false}
           key={i}
           onClick={() => handleButtonClick(i.toString())}
         >
@@ -58,7 +60,7 @@ const Numpad = ({ input, setInput, handleCheck, guesses }) => {
               d
             </button>
             <button
-              disabled={guesses.length >= 6 ? true : false}
+              disabled={isZeroButtonDisabled ? true : false}
               className={styles.numButton}
               key={0}
               onClick={() => handleButtonClick("0")}
@@ -66,7 +68,7 @@ const Numpad = ({ input, setInput, handleCheck, guesses }) => {
               0
             </button>
             <button
-              disabled={guesses.length >= 6 ? true : false}
+              disabled={guesses.length >= 10 ? true : false}
               key={"clear"}
               className={styles.numButton}
               onClick={handleClear}
@@ -79,7 +81,7 @@ const Numpad = ({ input, setInput, handleCheck, guesses }) => {
         <button
           className={styles.enterButton}
           disabled={
-            guesses.length >= 6 ||
+            guesses.length >= 10 ||
             input.length < 5 ||
             (guesses.correctNumbers && guesses.correctPositions) === 5
               ? true
