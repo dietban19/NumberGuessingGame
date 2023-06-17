@@ -38,7 +38,6 @@ export default function Card() {
 
   function handleCheck() {
     console.log(randomArray);
-    console.log(guesses);
     const inputArray = input.split("").map(Number);
 
     const result = {
